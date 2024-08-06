@@ -1,7 +1,5 @@
 {
-  "name": "2nd-year-guide",
-  "module": "index.ts",
-  "type": "module",
+  "name": "formatting",
   "devDependencies": {
     "@types/bun": "latest",
     "husky": "^9.1.4",
