@@ -68,6 +68,7 @@
 
 - Установка и сборка `fish`, `oh-my-fish`, `neovim`
 - TODO: Настройка красивых промптов в **cli** `Postgres`
+- TODO: Адекватная работа в **cli** `Postgres`
 
 > А почему бы не добавить герлянды и свистоперделки на и без того скучный
 > гелиос? Прикольно же :)
@@ -76,7 +77,6 @@
 | ------------------------------------------------------------------------------------------------------------- |
 | ![image](https://github.com/user-attachments/assets/331644fc-8b35-4960-bf64-c729f9cc84b6)                     |
 | ![image](https://github.com/user-attachments/assets/4f6c20c2-bb0a-4672-8bfb-18237bed7fb5)                     |
-
 
 ## Шаг 0: Настройка оболочки
 
@@ -208,6 +208,24 @@ P.S.: Теперь наслаждаетесь тем, что не запусти
 сильно от вашего конфига, но советую как миниум раза 4 зайти и выйти в неовим,
 чтобы, к примеру, `lazy.nvim` и `mason` проперделись и зарезолвили большую часть
 проблем.
+
+## Cli Postgres
+
+- edit `.psqlrc` file
+
+```bash
+\set VERBOSITY terse
+\set QUIET 1
+\timing
+
+\pset linestyle unicode
+\pset border 2
+\setenv CLICOLOR 1
+\setenv LESS "-R"
+
+\set PROMPT1 '%M:%[%033[1;31m%]%>%[%033[0m%] %n@%/%R%#%x '
+\set PROMPT2 '%M %n@%/%R %# '
+```
 
 # Веб-программирование
 
