@@ -75,6 +75,8 @@
 | ![image_2024-08-11_03-11-45](https://github.com/user-attachments/assets/e41aa05f-0557-4a09-aca3-477369a7c8bb) |
 | ------------------------------------------------------------------------------------------------------------- |
 | ![image](https://github.com/user-attachments/assets/331644fc-8b35-4960-bf64-c729f9cc84b6)                     |
+| ![image](https://github.com/user-attachments/assets/4f6c20c2-bb0a-4672-8bfb-18237bed7fb5)                     |
+
 
 ## Шаг 0: Настройка оболочки
 
