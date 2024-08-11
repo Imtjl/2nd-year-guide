@@ -96,17 +96,19 @@ touch .bash_profile
 vim .bash_profile
 ```
 
-- скопируйте конфигурацию и вставьте:
+- скопируйте данную конфигурацию и вставьте в .bash_profile:
 
 ```bash
-if [ -t 1 ]; then
-  exec fish
+if [ -f "$HOME/.local/bin/fish" ]; then
+	exec $HOME/.local/bin/fish
 fi
 
+export _JAVA_OPTIONS="-Xmx512M -XX:MaxMetaspaceSize=3200m"
+export JAVA_VERSION="17.0+"
+export JAVA_HOME="/usr/local/openjdk17"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/neovim/build/bin:$PATH"
 ```
-
-> TODO: добавить остальные настройки как гелиос оживёт
 
 ## Шаг 1: Установка Fish Shell
 
@@ -158,6 +160,19 @@ omf install lambda
 
 ```bash
 omf theme lambda
+```
+
+### 2.4 Удаление приветствия fish (по желанию)
+
+> вводить прямо так как написано
+
+```bash
+vim .config/fish/fish_variables
+:25
+o
+SETUVAR fish_greeting:""
+esc
+:wqa
 ```
 
 ## Шаг 3: Установка Neovim
