@@ -10,6 +10,7 @@
 - [Описание](#описание)
 - [Оглавление](#оглавление)
 - [Сокращения](#сокращения)
+- [Гелиос на стероидах](#гелиос-на-стероидах)
 - [Веб-программирование (3)](#веб-программирование)
   - [Лабораторная 1 (веб)](#лабораторная-1-веб)
     - [Деплой лабораторной 1 (веб)](#деплой-лабораторной-1-веб)
@@ -62,6 +63,134 @@
 - `ИЭК` - Инновационная экономика и технологическое предпринимательство
 - `Метопы` - Методы оптимизации
 - `БМС / Модельки` - Бизнес-модели основных секторов инновационной экономики
+
+# Гелиос на стероидах
+
+- Установка и сборка `fish`, `oh-my-fish`, `neovim`
+- TODO: Настройка красивых промптов в **cli** `Postgres`
+
+> А почему бы не добавить герлянды и свистоперделки на и без того скучный
+> гелиос? Прикольно же :)
+
+| ![image_2024-08-11_03-11-45](https://github.com/user-attachments/assets/e41aa05f-0557-4a09-aca3-477369a7c8bb) |
+| ------------------------------------------------------------------------------------------------------------- |
+| ![image](https://github.com/user-attachments/assets/331644fc-8b35-4960-bf64-c729f9cc84b6)                     |
+
+## Шаг 0: Настройка оболочки
+
+### 0.1 Добавление файла `.bash_profile` (если ещё нету)
+
+```bash
+touch .bash_profile
+```
+
+> он будет запускаться при каждом вашем заходе на гелиос
+
+### 0.2 Настройка файла `.bash_profile`
+
+- используйте редактор `vim`:
+
+```bash
+vim .bash_profile
+```
+
+- скопируйте конфигурацию и вставьте:
+
+```bash
+if [ -t 1 ]; then
+  exec fish
+fi
+
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+> TODO: добавить остальные настройки как гелиос оживёт
+
+## Шаг 1: Установка Fish Shell
+
+### 1.1 Скачивание исходного кода Fish
+
+```bash
+curl -LO https://github.com/fish-shell/fish-shell/releases/download/3.6.1/fish-3.6.1.tar.xz
+```
+
+### 1.2 Извлечение архива
+
+```bash
+tar -xf fish-3.6.1.tar.xz cd fish-3.6.1
+```
+
+### 1.3 Сборка и установка Fish
+
+```bash
+cmake -S . -B build -G "Ninja" -DCMAKE_BUILD_TYPE=Release
+-DCMAKE_INSTALL_PREFIX=$HOME/.local ninja -C build ninja -C build install
+```
+
+### 1.4 Добавление Fish в PATH
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bash_profile source
+~/.bash_profile
+```
+
+## Шаг 2: Установка Oh My Fish
+
+### 2.1 Установка Oh My Fish
+
+```bash
+curl -L https://get.oh-my.fish | fish
+```
+
+### 2.2 Установка Fish как оболочки по умолчанию
+
+```bash
+echo "exec fish" >> ~/.bash_profile source ~/.bash_profile
+```
+
+### 2.3 Установка темы Oh My Fish (по желанию)
+
+```bash
+omf install lambda
+```
+
+```bash
+omf theme lambda
+```
+
+## Шаг 3: Установка Neovim
+
+### 3.1 Скачивание исходного кода Neovim
+
+```bash
+curl -LO https://github.com/neovim/neovim/archive/refs/tags/stable.tar.gz
+tar xzf stable.tar.gz
+cd neovim-stable
+```
+
+### 3.2 Сборка и установка Neovim
+
+```bash
+cd neovim
+gmake clean
+cmake -S . -B build -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$HOME/.local -DMAN_INSTALL_DIR=$HOME/.local/share/man
+gmake install
+```
+
+### 3.3 Клонирование своей конфигурации Neovim
+
+- Например моя конфигурация, но приготовьтесь умереть:
+
+```bash
+git clone https://github.com/worthant/nvim.git ~/.config/nvim
+```
+
+> TODO: создать урезанную сборку неовима для гелиоса
+
+P.S.: Теперь наслаждаетесь тем, что не запустится половина плагинов. Зависит
+сильно от вашего конфига, но советую как миниум раза 4 зайти и выйти в неовим,
+чтобы, к примеру, `lazy.nvim` и `mason` проперделись и зарезолвили большую часть
+проблем.
 
 # Веб-программирование
 
