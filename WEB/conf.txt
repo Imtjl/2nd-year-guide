@@ -1,0 +1,88 @@
+ServerRoot "/usr/local"
+
+Mutex default:/home/studs/sXXXXXX/httpd-root/mutex-dir/
+
+Listen 24000
+
+LoadModule authn_core_module libexec/apache24/mod_authn_core.so
+LoadModule authz_core_module libexec/apache24/mod_authz_core.so
+LoadModule access_compat_module libexec/apache24/mod_access_compat.so
+LoadModule auth_basic_module libexec/apache24/mod_auth_basic.so
+LoadModule filter_module libexec/apache24/mod_filter.so
+LoadModule mime_module libexec/apache24/mod_mime.so
+LoadModule log_config_module libexec/apache24/mod_log_config.so
+LoadModule setenvif_module libexec/apache24/mod_setenvif.so
+LoadModule version_module libexec/apache24/mod_version.so
+LoadModule remoteip_module libexec/apache24/mod_remoteip.so
+LoadModule ssl_module libexec/apache24/mod_ssl.so
+LoadModule dir_module libexec/apache24/mod_dir.so
+LoadModule rewrite_module libexec/apache24/mod_rewrite.so
+LoadModule php_module libexec/apache24/libphp.so
+LoadModule fastcgi_module libexec/apache24/mod_fastcgi.so
+
+<IfModule unixd_module>
+User www
+Group www
+</IfModule>
+
+ServerAdmin you@example.com
+ServerName helios.cs.ifmo.ru:24000
+
+<Directory />
+    AllowOverride none
+    Require all denied
+</Directory>
+
+DocumentRoot "/var/www"
+<Directory "/var/www">
+    Options FollowSymLinks
+    AllowOverride None
+    Require all granted
+</Directory>
+
+<IfModule dir_module>
+    DirectoryIndex index.php index.html
+</IfModule>
+
+<Files ".ht*">
+    Require all denied
+</Files>
+
+ErrorLog "/home/studs/sXXXXXX/httpd-root/error.log"
+PidFile "/home/studs/sXXXXXX/httpd-root/httpd.pid"
+LogLevel warn
+
+<IfModule log_config_module>
+    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+    CustomLog "/home/studs/sXXXXXX/httpd-root/access.log" combined
+</IfModule>
+
+ScriptAlias /cgi-bin/ "/usr/local/www/apache24/cgi-bin/"
+<Directory "/usr/local/www/apache24/cgi-bin">
+    AllowOverride None
+    Options None
+    Require all granted
+</Directory>
+
+FastCgiExternalServer "/home/studs/sXXXXXX/httpd-root/fcgi-bin/hello-world.jar" -host localhost:24001 -nph
+Alias /fcgi-bin/ "/home/studs/sXXXXXX/httpd-root/fcgi-bin/"
+<Directory "/home/studs/sXXXXXX/httpd-root/fcgi-bin">
+    AllowOverride None
+    Options None
+    Require all granted
+</Directory>
+
+<IfModule headers_module>
+    RequestHeader unset Proxy early
+</IfModule>
+
+<IfModule mime_module>
+    TypesConfig etc/apache24/mime.types
+    AddType application/x-compress .Z
+    AddType application/x-gzip .gz .tgz
+</IfModule>
+
+<IfModule ssl_module>
+SSLRandomSeed startup builtin
+SSLRandomSeed connect builtin
+</IfModule>
