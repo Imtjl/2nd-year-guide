@@ -250,7 +250,9 @@ JS и фреймворки react, vue, angular, так и бэкенда (сер
 точкой в координатную плоскость или промахнулся.
 
 [-> Подробное описание с выполненным вариантом](https://github.com/worthant/simple-one-page-website/blob/726cfdd610064b9f9260f41cf24b76f1cd568005/README_RU.md)  
-[-> Гайд на деплой, теор.вопросы se.ifmo](https://docs.google.com/document/u/0/d/13eAoOwDXg1enr3eFeawcM76AAhufZljDA4XYcNYAyDg/mobilebasic)
+[-> Гайд на деплой, теор.вопросы se.ifmo](https://docs.google.com/document/u/0/d/13eAoOwDXg1enr3eFeawcM76AAhufZljDA4XYcNYAyDg/mobilebasic)  
+[-> Гайд на поднятие httpd сервера на helios](./WEB/guide-httpd.pdf)
+
 
 > Имхо: ничего зазорного в чтении гайда для educational purposes нету. Но лучше
 > не опирайтесь на то, что в нём написано - перепроверяйте информацию и сами всё
